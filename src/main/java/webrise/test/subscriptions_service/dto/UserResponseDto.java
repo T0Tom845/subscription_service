@@ -1,0 +1,11 @@
+package webrise.test.subscriptions_service.dto;
+
+import java.util.UUID;
+
+public record UserResponseDto(
+        UUID id,
+        String username,
+        String email,
+        String createdAt
+) {
+}
