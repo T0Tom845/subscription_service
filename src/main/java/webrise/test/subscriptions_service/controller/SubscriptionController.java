@@ -3,9 +3,7 @@ package webrise.test.subscriptions_service.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import webrise.test.subscriptions_service.dto.SubscriptionRequestDto;
-import webrise.test.subscriptions_service.dto.TopSubscriptionResponseDto;
-import webrise.test.subscriptions_service.dto.UserSubscriptionResponseDto;
+import webrise.test.subscriptions_service.dto.*;
 import webrise.test.subscriptions_service.service.SubscriptionService;
 
 import java.util.Set;
@@ -18,19 +16,24 @@ public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
     @GetMapping("users/{id}/subscriptions")
-    public Set<UserSubscriptionResponseDto> getUserSubscriptions(@PathVariable UUID id) {
-        return subscriptionService.getSubscriptionsByUserId(id);
+    public UserSubscriptionListResponseDto getUserSubscriptions(@PathVariable UUID id) {
+        Set<UserSubscriptionResponseDto> userSubscriptionsDto = subscriptionService.getSubscriptionsByUserId(id);
+        return new UserSubscriptionListResponseDto(userSubscriptionsDto);
     }
+
     @PostMapping("users/{id}/subscriptions")
-    public UserSubscriptionResponseDto addSubscriptionToUser(@PathVariable UUID id, @RequestBody @Valid SubscriptionRequestDto dto){
+    public UserSubscriptionResponseDto addSubscriptionToUser(@PathVariable UUID id, @RequestBody @Valid SubscriptionRequestDto dto) {
         return subscriptionService.addSubscriptionToUser(id, dto);
     }
-    @DeleteMapping("users/{id}/subscriptions/{sub_id}")
-    public void deleteSubscription(@PathVariable UUID id, @PathVariable(name = "sub_id") UUID sub_id){
-        subscriptionService.deleteSubscriptionFromUser(id, sub_id);
+
+    @DeleteMapping("users/{id}/subscriptions/{subId}")
+    public void deleteSubscription(@PathVariable UUID id, @PathVariable(name = "subId") UUID subId) {
+        subscriptionService.deleteSubscriptionFromUser(id, subId);
     }
+
     @GetMapping("/subscriptions/top")
-    public Set<TopSubscriptionResponseDto> getTopSubscriptions() {
-        return subscriptionService.getTopSubscriptions();
+    public TopSubscriptionListResponseDto getTopSubscriptions() {
+        Set <TopSubscriptionResponseDto> topSubscriptionResponseDtos = subscriptionService.getTopSubscriptions();
+        return new TopSubscriptionListResponseDto(topSubscriptionResponseDtos);
     }
 }

@@ -17,7 +17,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class ControllerLoggingAspect {
 
     @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
-    public void restControllerMethods() {}
+    public void restControllerMethods() {
+    }
 
     @Around("restControllerMethods()")
     public Object logController(ProceedingJoinPoint joinPoint) throws Throwable {

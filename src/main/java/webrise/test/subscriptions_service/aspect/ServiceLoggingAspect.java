@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 public class ServiceLoggingAspect {
 
     @Pointcut("@within(org.springframework.stereotype.Service)")
-    public void serviceMethods() {}
+    public void serviceMethods() {
+    }
 
     @Around("serviceMethods()")
     public Object logService(ProceedingJoinPoint joinPoint) throws Throwable {

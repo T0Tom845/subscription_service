@@ -1,4 +1,4 @@
-package webrise.test.subscriptions_service.config;
+package webrise.test.subscriptions_service.controller;
 
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,14 +18,17 @@ public class ControllerExceptionHandler {
     public ResponseEntity<String> handleNoSuchUser(NoSuchUserException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleEntityNotFound(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
     @ExceptionHandler(NoSuchSubscriptionException.class)
     public ResponseEntity<String> handleNoSuchSubscription(NoSuchSubscriptionException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
