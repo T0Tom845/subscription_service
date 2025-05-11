@@ -3,8 +3,8 @@ spring:
     name: '@project.artefactId@'
   datasource:
     url: jdbc:postgresql://localhost:5434/subscription_db?reWriteBatchedInserts=true
-    password: postgres
-    username: postgres
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -13,3 +13,8 @@ spring:
       connection-timeout: 30000
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

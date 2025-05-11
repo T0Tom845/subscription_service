@@ -51,7 +51,7 @@ public class UserController {
                             description = "Пользователь найден",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserResponseDto.class))),
-                    @ApiResponse(responseCode = "404", description = "Пользователь не найден"),
+                    @ApiResponse(responseCode = "404", description = "Пользователь не найден",content = @Content),
             }
     )
     @GetMapping("/{id}")
@@ -73,8 +73,8 @@ public class UserController {
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserResponseDto.class))
                     ),
-                    @ApiResponse(responseCode = "409", description = "Конфликт (имя или email пересекаются)"),
-                    @ApiResponse(responseCode = "400", description = "Ошибка валидации данных"),
+                    @ApiResponse(responseCode = "409", description = "Конфликт (имя или email пересекаются)",content = @Content),
+                    @ApiResponse(responseCode = "400", description = "Ошибка валидации данных",content = @Content),
             }
     )
     @PostMapping
@@ -99,8 +99,8 @@ public class UserController {
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserResponseDto.class))
                     ),
-                    @ApiResponse(responseCode = "409", description = "Конфликт (имя или email пересекаются)"),
-                    @ApiResponse(responseCode = "400", description = "Ошибка валидации данных"),
+                    @ApiResponse(responseCode = "409", description = "Конфликт (имя или email пересекаются)",content = @Content),
+                    @ApiResponse(responseCode = "400", description = "Ошибка валидации данных", content = @Content),
             }
     )
     @PutMapping("/{id}")
