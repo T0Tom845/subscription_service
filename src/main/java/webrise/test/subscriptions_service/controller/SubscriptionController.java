@@ -16,9 +16,9 @@ public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
     @GetMapping("users/{id}/subscriptions")
-    public UserSubscriptionListResponseDto getUserSubscriptions(@PathVariable UUID id) {
+    public UserSubscriptionSetResponseDto getUserSubscriptions(@PathVariable UUID id) {
         Set<UserSubscriptionResponseDto> userSubscriptionsDto = subscriptionService.getSubscriptionsByUserId(id);
-        return new UserSubscriptionListResponseDto(userSubscriptionsDto);
+        return new UserSubscriptionSetResponseDto(userSubscriptionsDto);
     }
 
     @PostMapping("users/{id}/subscriptions")
